@@ -7,8 +7,8 @@ app.get('/', function(request, response) {
   console.log(content);
 
   	var buff = new Buffer(256);
-	len = buffer.write(content, 0);
-	response.send(buffer.toString('utf8', 0, len));
+	len = buff.write(content, 0);
+	response.send(buff.toString('utf8', 0, len));
 });
 
 var port = process.env.PORT || 5000;
