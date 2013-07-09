@@ -1,7 +1,7 @@
 var express = require('express');
 
 var app = express.createServer(express.logger());
- app.register('.html', require('jade'));
+
 app.get('/', function (req, res)
 {
     res.render('index.html');
