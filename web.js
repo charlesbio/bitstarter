@@ -2,8 +2,9 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
-app.get('index.html', function(request, response) {
-  response.send('Hello World 3!');
+app.get('/', function (req, res)
+{
+    res.render('index.html');
 });
 
 var port = process.env.PORT || 5000;
