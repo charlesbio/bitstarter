@@ -42,7 +42,7 @@ var assertFileExists = function(infile) {
 };
 
 var getURL = function(a) {
-    rest.get(a).on('complete', function(result) {
+    restler.get(a).on('complete', function(result) {
       if (result instanceof Error) {
         console.log("%s does not exist. Exiting.");
         process.exit(1); 
