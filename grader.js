@@ -83,7 +83,7 @@ if(require.main == module) {
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
         .option('-u, --url <var>', 'URL PATH', clone(getURL), url_default)
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
+    var checkJson = checkHtmlFile(program.url, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
 } 
