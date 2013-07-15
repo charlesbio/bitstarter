@@ -41,15 +41,18 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
-var getURL = function(a) {
-    restler.get(a).on('complete', function(result) {
-      if (result instanceof Error) {
-        console.log("%s does not exist. Exiting.");
-        process.exit(1); 
-      } else {
-        return result;
-      }
-    });
+var getURL = function(url, checksfile) {
+restler.get(url).on('complete', function(data, response) {
+$ = cheerio.load(data);
+var checks = loadChecks(checksfile).sort();
+var out = {};
+for(var ii in checks){
+var present = $(checks[ii]).lenght > 0;
+out[checks[ii]] = present;
+}
+var outJson = JSON.stringify(out, null, 4);
+console.log(outJson);
+});
 };
 
 
@@ -81,11 +84,30 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-        .option('-u, --url <var>', 'URL PATH', clone(getURL), url_default)
+        .option('-u, --url <var>', 'URL PATH')
         .parse(process.argv);
-    var checkJson = checkHtmlFile(program.url, program.checks);
+if(program.url)
+{
+   restler.get(program.url).on('complete', function(data, response) {
+        $ = cheerio.load(data);
+	var checks = loadChecks(program.checks).sort();
+	var out = {};
+	for(var ii in checks) {
+	   var present = $(checks[ii]).length > 0;
+	   out[checks[ii]] = present;
+	}
+
+    var outJson = JSON.stringify(out, null, 4);
+    console.log(outJson);    
+
+    });
+}
+else
+{
+    var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
+}
 } 
 else {
     exports.checkHtmlFile = checkHtmlFile;
