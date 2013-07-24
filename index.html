@@ -35,7 +35,7 @@
         .navbar .nav {
 
           position: relative !important;
-          top: 5px !important;
+          top: 10px !important;
         }
         p#tagline-text{
           line-height: 220px !important;
@@ -47,14 +47,32 @@
         body{
               line-height: 15px !important;
         }
-        li.active {
-          background-color: #000;
 
+        /* Changes to collapse mobile navi */
+        li.active {
+          background-color: #0D787C;
+   
         }
+        .nav>li>a>p  {
+
+           color:#FFFFFF !important;
+        }
+        .nav-collapse .nav>li{
+
+          border: 1px solid rgba(45, 219, 235, 1);
+        }
+        .navbar-inverse .navbar-inner {
+            background-color: #060841;
+            
+            /* #06909C; */
+        }
+ 
+        /* Changes to collapse mobile navi */
+
         .navbar .nav {
    
           position: relative;
-          top: 5px;
+          top: 10px !important;
         }
         .nav>li>a>img {
           display : none;
@@ -77,9 +95,12 @@
             position: relative;
             top: 15px;
         }
+        .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+             padding: 0px !important;
+        }
       }
 
-  
+      /* DITO UNG PUTANGINANG ICONS */
       @media (min-width: 980px) {  
 
             .navbar .nav {
@@ -130,12 +151,14 @@
            border-top: 1px white solid;
          }
         li.active {
-            background-color: #000;
+            background-color: #0D787C;
         }
         .navbar .nav {
    
         }
-    
+        .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+             padding: 0px !important;
+        }
       
      }
 
@@ -209,6 +232,9 @@
 
       p#tagline-text{
         line-height:18px !important;
+      }
+      .navbar-inverse .nav-collapse .nav>li>a:hover, .navbar-inverse .nav-collapse .nav>li>a:focus, .navbar-inverse .nav-collapse .dropdown-menu a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:focus {
+        background-color: #181B79 !important;
       }
     </style>
   </head>
